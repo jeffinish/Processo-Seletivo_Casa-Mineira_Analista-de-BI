@@ -54,6 +54,27 @@ Destes campos, podemos obter as seguintes informações iniciais:
   - Estas possuem os três possíveis status e 6 possíveis etapas.
 
 # Análises
+
+- Evolução da quantidade de negócios a cada mês;
+  - O número de ocorrências têm crescido ao longo dos meses registrados;
+  - Podemos observar, em especial, o aumento maior entre os meses de junho e julho de 2021;
+  - *Vale a pena remover os dados de Outubro para ter uma visualizaçao mais real dos dados?*
+- Taxa de conversão para negócios ganhos;
+  - As ocorrências ganhas representam 0.41% (22 de 5367) de todas as ocorrências registradas;
+- Top N imobiliárias na geração de ocorrências;
+  - 12 imobiliárias representam 25% das ocorrências;
+- Proporção de ocorrências com respeito a novos clientes;
+  - 36,69% (1969) das ocorrências não possuem informação sobre o status do cliente;
+  - Desconsiderando os que não possuem informação, a divisão é bem equilibrada: 50,29% (1709) clientes novos e 49,71%(1689) clientes antigos.
+- Proporção de ocorrências com respeito ao canal de origem;
+  - O Canal Tipo B gerou o maior número de ocorrências, seguido pelo Tipo D, C e A respectivamente;
+  - Apesar da diferença no volume de ocorrências, a taxa de conversão de todos os canais foi igual. Além disso, estes possuem correlação positiva, isto é, quanto maior o número de ocorrências geradas, maior o número de ocorrências ganhas para todas os canais.
+  quanto maior o número
+- Distribuição dos negócios perdidos com respeito às etapas;
+  - Dos negócios perdidos, 41,41% foram perdidos na Etapa 5 (Acompanhamento)
+- Duração média da ocorrência;
+  - A duração média das ocorrências é de 20,60 dias, sendo 20,40 para ocorrências ganhas e 20,80 para ocorrências perdidas.
+
 # Análise da viabilidade de Indicadores a serem avaliados
 
 ### 9 Indicadores de desempenho para uma imobiliaria de Locaçao
