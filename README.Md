@@ -2,6 +2,8 @@
 
 O Dashboard pode ser acessado através [deste link](https://app.powerbi.com/view?r=eyJrIjoiNTg5YWZkZTctNTc3Mi00M2M3LTgzNjktNjQwNDBiMTAzZmJjIiwidCI6ImFmOTdjMzM5LTE3ODMtNDIzZi1iZGNmLTQ5ODViZmMwOTQ3ZSJ9).
 
+A apresentação com as análises feitas pode ser encontrada neste [arquivo](JeffersonBASilva_Apresentacao.pdf)
+
 O repositório está organizado da seguinte maneira:
 
     ├── Dados Brutos                          # Base de dados original
