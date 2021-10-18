@@ -1,4 +1,46 @@
-# Análise Exploratória da base de Dados
+# Processo Seletivo - Casa Mineira - Analista de BI/Dados
+
+O Dashboard pode ser acessado através [deste link](https://app.powerbi.com/view?r=eyJrIjoiNTg5YWZkZTctNTc3Mi00M2M3LTgzNjktNjQwNDBiMTAzZmJjIiwidCI6ImFmOTdjMzM5LTE3ODMtNDIzZi1iZGNmLTQ5ODViZmMwOTQ3ZSJ9).
+
+O repositório está organizado da seguinte maneira:
+
+    ├── Dados Brutos                          # Base de dados original
+    ├── Dados Tratados                        # Base de dados tratada
+    ├── Scripts Tratamento                    # Scripts em Python utilizados para tratamento dos dados
+    ├── Dashboard.pbix                        # Arquivo do Microsoft Power BI com Dashboard                    
+    ├── JeffersonBASIlva_Apresentacao.pdf     # Apresentação sobre os análise feita
+    ├── LICENSE
+    └── README.md
+
+# Introdução
+
+## Cenário
+
+A empresa **Casa Mineira Imóveis** disponibilizou uma base de dados com **5.367** entradas e **10** variáveis para análise como parte do Processo Seletivo para **Analista de BI/Dados Jr.**.
+
+## Objetivo Gerais
+
+- Entender os dados presentes na base fornecida para extrair o máximo de
+informações relevantes;
+- Apresentar as informações obtidas através de um dashboard
+
+## Objetivos Específicos
+- Analisar a evolução do volume de ocorrências geradas ao longo do período;
+- Calcular a taxa de conversão de ocorrências;
+- Identificar as Imobiliárias que geram maior número de ocorrências;
+- Avaliar se há diferença na taxa de conversão de clientes novos e recorrentes;
+- Avaliar o impacto dos tipos de Canal de Origem na geração de ocorrências;
+- Identificar a etapa do processo que acumula maior número de ocorrências
+perdidas;
+- Calcular o tempo médio de duração das ocorrências.
+
+## Ferramentas Utilizadas
+- **Python**: Utilizado para tratamento da base de dados, definição das variáveis a serem utilizadas e realização de análises preliminares;
+  - O script de tratamento pode se encontrado na pasta `Script Tratamento`;
+- **Microsoft Power BI**: Utilizado para análise mais detalhada dos dados,
+definição de indicadores a serem acompanhados e criação do dashboard.
+
+## Base de Dados
 
 A base possui 5367 entradas e 10 variáveis e foi apresentada da seguinte forma:
 
@@ -10,7 +52,7 @@ A base possui 5367 entradas e 10 variáveis e foi apresentada da seguinte forma:
 |3 |	2021-03-22 11:03:14 |	Imobiliária 1 |	Não	| 04 - Pós-visita |	Perdido	| NaN |	2021-03-22 15:49:21 |	Tipo D	| 2021-04-30 14:17:10 |	2021-03-23 |
 |4 |	2021-03-23 10:37:22 |	Imobiliária 5 |	Não |	01 - Contato |	Perdido	| NaN |	2021-04-12 08:37:17 |	Tipo C |	2021-04-30 14:58:51 |	2021-04-12 |
 
-Após ajuste nos nomes das colunas, temos:
+Após primeiro contato com a base de dados, foram realizados pequenos ajustes nos nomes das colunas para facilitar o trabalho.
 
 |Índice | Data de criação |	Organização |	Novo cliente? |	Etapa |	Status |	Data de ganho |	Data da perda |	Canal de Origem |	Data de atualização	| Data da última atividade |
 | :------------- | :------------- |  :------------- |  :------------- |  :------------- |  :------------- |  :------------- |  :------------- |  :------------- |  :------------- |  :------------- |
@@ -19,6 +61,34 @@ Após ajuste nos nomes das colunas, temos:
 |2 |	2021-03-22 10:59:57 |	Imobiliária 1 |	Não |	07 - Negociação	| Ganho |	2021-04-01 12:19:44 |	NaN	| Tipo D |	2021-07-30 16:34:17 |	2021-04-01 |
 |3 |	2021-03-22 11:03:14 |	Imobiliária 1 |	Não	| 04 - Pós-visita |	Perdido	| NaN |	2021-03-22 15:49:21 |	Tipo D	| 2021-04-30 14:17:10 |	2021-03-23 |
 |4 |	2021-03-23 10:37:22 |	Imobiliária 5 |	Não |	01 - Contato |	Perdido	| NaN |	2021-04-12 08:37:17 |	Tipo C |	2021-04-30 14:58:51 |	2021-04-12 |
+
+
+## Variáveis Utilizadas
+
+Após tratamento da base de dados, foram utilizadas as seguintes variáveis:
+
+- **Data de Criação**: Apresenta a data de criação da ocorrência;
+- **Organização**: Identifica a imobiliária que gerou a ocorrência;
+- **Novo cliente?**: Identifica se a ocorrência foi gerada por um novo cliente;
+- **Etapa**: Apresenta em qual etapa a ocorrência se encontra desde a última atualização;
+- **Status**: Identifica o status da ocorrência;
+- **Data de ganho**: Indica a data que a ocorrência foi ganha;
+- **Data da perda**: Indica a data que a ocorrência foi perdida;
+- **Canal de origem**: Indica qual a partir de qual canal a ocorrência foi gerada.
+7
+
+## Premissas
+- Devido ao baixo índice de ocorrências ganhas, estas não foram utilizadas
+como parâmetro para análises;
+- Os campos **Data de Atualização** e **Data da Última Atividade**
+não foram utilizados na análise por não apresentarem informações
+relevantes;
+- Assumimos o campo **Novo Cliente?** independente do campo **Organização**.
+
+<!--- # Análise Exploratória
+
+## Variáveis utilizadas
+
 
 Destes campos, podemos obter as seguintes informações iniciais:
 - **Data de criação**
@@ -57,7 +127,7 @@ Destes campos, podemos obter as seguintes informações iniciais:
 
 - Evolução da quantidade de negócios a cada mês;
   - O número de ocorrências têm crescido ao longo dos meses registrados;
-  - Podemos observar, em especial, o aumento maior entre os meses de junho e julho de 2021;
+  - Podemos observar, em especial, um aumento maior entre os meses de junho e julho de 2021;
   - *Vale a pena remover os dados de Outubro para ter uma visualizaçao mais real dos dados?*
 - Taxa de conversão para negócios ganhos;
   - As ocorrências ganhas representam 0.41% (22 de 5367) de todas as ocorrências registradas;
@@ -73,11 +143,29 @@ Destes campos, podemos obter as seguintes informações iniciais:
 - Distribuição dos negócios perdidos com respeito às etapas;
   - Dos negócios perdidos, 41,41% foram perdidos na Etapa 5 (Acompanhamento)
 - Duração média da ocorrência;
-  - A duração média das ocorrências é de 20,60 dias, sendo 20,40 para ocorrências ganhas e 20,80 para ocorrências perdidas.
+  - A duração média das ocorrências é de 20,60 dias, sendo 20,40 para ocorrências ganhas e 20,80 para ocorrências perdidas. --->
 
 # Análise da viabilidade de Indicadores a serem avaliados
 
-### 9 Indicadores de desempenho para uma imobiliaria de Locaçao
+Foi realizada uma busca por referências que indicassem indicadores relevantes para o mercado imobiliário. Através desta pesquisa, foram identificados os seguintes indicadores:
+
+## Indicadores escolhidos para acompanhamento
+- Negócios Fechados
+  - Quantidade de negócios fechados
+- Oportunidades Criadas
+  - Quantidade de negócios iniciados
+- Negócios em aberto
+  - Quantidade de negócios em aberto
+- Tempo para fechar o negócios
+  - Auto explicativo
+- Taxa de Conversão
+  - Numero de Oportunidades divididos pelo de negócios fechados
+
+### Referências Utilizadas
+
+#### 9 Indicadores de desempenho para uma imobiliária de Locação
+
+[Referência](https://imobireport.com.br/9-indicadores-de-desempenho-kpis-para-uma-imobiliaria-de-locacao/)
 - Taxa de Conversão
   - Numero de Oportunidades dividios pelo de negócios fechados
 - ~~Custo de aquisiçao de cliente~~
@@ -100,7 +188,8 @@ Destes campos, podemos obter as seguintes informações iniciais:
 - Oportunidades Criadas (Negocio Criado)
 - Negócios em aberto
 
-### Guia definitivo de vendas imobiliárias: 8 KPI’s essenciais para seu negócio
+#### Guia definitivo de vendas imobiliárias: 8 KPI’s essenciais para seu negócio
+[Referência](https://www.vistasoft.com.br/vendas-imobiliarias/)
 - Negócios fechados
   - Auto explicativo
 - Oportunidades Criadas
@@ -118,7 +207,8 @@ Destes campos, podemos obter as seguintes informações iniciais:
 - ~~Taxa de Retenção de Clientes~~
   -  ~~Porcentagem de clientes que continuam sendo clientes.~~
 
-### 6 indicadores de desempenho que você precisa acompanhar na sua imobiliária
+#### 6 indicadores de desempenho que você precisa acompanhar na sua imobiliária
+[Referência](https://www.groupsoftware.com.br/blog/indicadores-de-desempenho/)
 - ~~Ticket médio~~
   - ~~Receita total dividido pelo número de negócios realizados~~
 - Taxa de Conversão
@@ -131,14 +221,27 @@ Destes campos, podemos obter as seguintes informações iniciais:
   - ~~Quantidade de contatos atendidos dividido pelo contato com clientes que apresentaram recusas~~
 - ~~Índice de recomendação~~
 
-## Indicadores escolhidos
-- Negócios Fechados
-  - Quantidade de negócios fechados
-- Oportunidades Criadas
-  - Quantidade de negócios iniciados
-- Negócios em aberto
-  - Quantidade de negócios em aberto
-- Tempo para fechar o negócios
-  - Auto explicativo
-- Taxa de Conversão
-  - Numero de Oportunidades divididos pelo de negócios fechados
+# Conclusão
+
+## Ações Sugeridas
+
+Baseado na análise dos dados fornecidos, pode-se sugerir as seguintes ações:
+
+- Trabalhar juntamente com a equipe responsável pela **Etapa 5 – Acompanhamento** do processo, pois das
+ocorrências perdidas **41,41%** delas ocorreram nesta etapa;
+- Alinhar com os colaboradores sobre a necessidade de preenchimento do campo **"Novo Cliente?"**
+corretamente, uma vez que este pode auxiliar no melhor direcionamento de ações a serem tomadas;
+- Análise das **ações** realizadas durante o mês de **Junho/2021** para possível aplicação em meses futuros;
+- Analisar mais a fundo o **desempenho** do canal **Tipo A**, uma vez que este gerou **menos ocorrências** quando
+comparado aos outros.
+
+## Próximos Passos
+
+Caminhos para a continuação destas análises são:
+
+- Trabalhar com informações relacionadas à receita gerada pelos negócios fechados e investimento necessário
+em cada Canal de Origem para avaliar a retorno sobre o investimento;
+- Estudo da organização do preenchimento dos campos “Data de Atualização” e “Data da Última Atividade” para
+avaliar a viabilidade de um possível retrabalho das ocorrências perdidas após determinado tempo.
+- Trabalhar com informações geográficas para análise de desempenho separado por região;
+- Trabalhar com informações de Analytics para analisar desempenho por faixa etária, sexo, renda e etc
